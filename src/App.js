@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ApiKeyForm from './views/ApiKeyForm';
+import ApiKeySetConfirmation from './views/ApiKeySetConfirmation';
+import RSSFeeds from './views/RSSFeeds';
 
 function App() {
+  const [apiKey, setApiKey] = useState("");
+  const [apiKeyLoaded, setApiKeyLoaded] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <header>
+          <ApiKeyForm 
+            apiKey={apiKey}
+            setApiKey={setApiKey}
+            apiKeyLoaded={apiKeyLoaded}
+            setApiKeyLoaded={setApiKeyLoaded}
+          />
+        </header>
+        <body>
+          <ApiKeySetConfirmation apiKeyLoaded={apiKeyLoaded} RSSFeeds={RSSFeeds} />
+        </body>
+      </div>
     </div>
   );
 }
